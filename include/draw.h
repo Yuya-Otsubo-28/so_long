@@ -1,12 +1,12 @@
 #ifndef DRAW_H
 #define DRAW_H
 
-#include "../error/error.h"
-#include "../src/map/map.h"
-#include "../gnl/get_next_line.h"
-#include "../libft/libft.h"
+#include "error.h"
+#include "map.h"
+#include "get_next_line.h"
+#include "libft.h"
 #include "../mlx/mlx.h"
-#include "../src/struct.h"
+#include "struct.h"
 
 #define WPB 50
 #define HPB 50

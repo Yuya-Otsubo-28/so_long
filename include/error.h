@@ -1,9 +1,9 @@
 #ifndef ERROR_H
 #define ERROR_H
 
-#include "../libft/libft.h"
-#include "../src/map/map.h"
-#include "../src/struct.h"
+#include "libft.h"
+#include "map.h"
+#include "struct.h"
 #include <stdarg.h>
 
 void free_double_ptr(char **ptr, size_t count);

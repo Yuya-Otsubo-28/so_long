@@ -6,7 +6,7 @@
 #    By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/18 13:28:39 by yotsubo           #+#    #+#              #
-#    Updated: 2022/11/19 00:41:03 by yotsubo          ###   ########.fr        #
+#    Updated: 2022/11/19 17:13:45 by yotsubo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,21 +22,28 @@ SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c\
 		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c\
 		ft_ltoa.c ft_deci_to_hexa.c ft_putuchar_fd.c ft_utoa.c ft_putnstr_fd.c\
 		printf_putstr_fd.c printf_putuchar.c ft_atol.c ft_strcmp.c ft_strndup.c\
-		##ft_printf.c
+		ft_printf.c print_args_utils.c
 OBJS	= $(SRCS:.c=.o)
+GNL_PATH = ./gnl
+GNL = $(GNL_PATH)/gnl.a
 CC	= cc
 CFLAGS	= -Wall -Wextra -Werror
 
 all	: $(NAME)
 
-$(NAME): $(OBJS)
-	ar rc $(NAME) $(PRINTF_OBJS) $(OBJS)
+$(NAME): $(OBJS) $(GNL)
+	ar rc $(NAME) $(OBJS) $(GNL)
+
+$(GNL) :
+	make -C $(GNL_PATH)
 
 clean :
 	rm -f $(OBJS)
+	make clean -C $(GNL_PATH)
 
 fclean : clean
 	rm -f $(NAME)
+	make fclean -C $(GNL_PATH)
 
 re : fclean all
 

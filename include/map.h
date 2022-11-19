@@ -1,13 +1,13 @@
 #ifndef MAP_H
 #define MAP_H
 
-#include "../../mlx/mlx.h"
-#include "../../libft/libft.h"
-#include "../../gnl/get_next_line.h"
-#include "../../error/error.h"
-#include "../../draw/draw.h"
-#include "../struct.h"
-#include "../../draw/event/events.h"
+#include "../mlx/mlx.h"
+#include "libft.h"
+#include "get_next_line.h"
+#include "error.h"
+#include "draw.h"
+#include "struct.h"
+#include "events.h"
 
 t_map map_init(char *filename);
 

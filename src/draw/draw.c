@@ -1,4 +1,4 @@
-#include "draw.h"
+#include "../../include/draw.h"
 
 static void draw_marginy(t_pt *margin, t_data *res_data, t_data *f_data)
 {

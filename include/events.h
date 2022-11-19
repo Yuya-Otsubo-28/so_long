@@ -1,7 +1,7 @@
 #ifndef EVENTS_H
 #define EVENTS_H
 
-#include "../draw.h"
+#include "draw.h"
 
 #define W_KEY 119
 #define A_KEY 97
