@@ -6,12 +6,12 @@
 #    By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/18 13:28:39 by yotsubo           #+#    #+#              #
-#    Updated: 2022/11/19 17:52:30 by yotsubo          ###   ########.fr        #
+#    Updated: 2022/11/19 18:26:37 by yotsubo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libft.a
-SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c\
+LIBFT_SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c\
 		ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c\
 		ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c ft_split.c\
 		ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c\
@@ -23,28 +23,24 @@ SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c\
 		ft_ltoa.c ft_deci_to_hexa.c ft_putuchar_fd.c ft_utoa.c ft_putnstr_fd.c\
 		printf_putstr_fd.c printf_putuchar.c ft_atol.c ft_strcmp.c ft_strndup.c\
 		ft_printf.c print_args_utils.c
-OBJS	= $(SRCS:.c=.o)
 GNL_PATH = ./gnl
-GNL = $(GNL_PATH)/gnl.a
+GNL_SRCS = $(GNL_PATH)/get_next_line_utils.c $(GNL_PATH)/get_next_line.c
+SRCS = $(LIBFT_SRCS) $(GNL_SRCS)
+OBJS	= $(SRCS:.c=.o)
 CC	= cc
 CFLAGS	= -Wall -Wextra -Werror
 INCLUDE = -I include
 
 all	: $(NAME)
 
-$(NAME): $(OBJS) $(GNL)
+$(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS) $(GNL)
-
-$(GNL) :
-	make -C $(GNL_PATH)
 
 clean :
 	@rm -f $(OBJS)
-	make clean -C $(GNL_PATH)
 
 fclean : clean
 	@rm -f $(NAME)
-	make fclean -C $(GNL_PATH)
 
 .c.o :
 	$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE)

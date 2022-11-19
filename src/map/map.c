@@ -35,21 +35,7 @@ t_map map_init(char *filename)
 
     map.map_data = NULL;
     fd = filename_check(filename);
-    puts("hello");
     get_map_data(fd, &map);
     check_map_data(&map);
     return (map);
-}
-
-int main(void)
-{
-    t_map map;
-    t_mlx mlx;
-    t_img img;
-
-    map = map_init("../test.ber");
-    img.c_img = NULL;
-    draw(&map, &mlx, &img);
-    events(&mlx, &img, &map);
-    return (0);
 }

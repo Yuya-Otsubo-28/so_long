@@ -1,4 +1,5 @@
 #include "map.h"
+#include "get_next_line.h"
 
 static char *ignore_space(char *str)
 {

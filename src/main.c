@@ -1,13 +1,19 @@
-#include "./src/map/map.h"
-#include "./error/error.h"
+#include "map.h"
+#include "draw.h"
+#include "events.h"
+#include "error.h"
 
-int main(int argc, char *argv[])
+int main(int ac, char *av[])
 {
     t_map map;
+    t_mlx mlx;
+    t_img img;
 
-    if (argc != 2)
+    if (ac != 2)
         error_handle(ARGS_ERROR, NULL);
-    map = map_init(argv[1]);
-    draw(map);
-    events();
+    map = map_init(av[1]);
+    img.c_img = NULL;
+    draw(&map, &mlx, &img);
+    events(&mlx, &img, &map);
+    exit(0);
 }

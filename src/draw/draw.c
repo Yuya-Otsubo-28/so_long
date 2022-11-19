@@ -1,4 +1,4 @@
-#include "../../include/draw.h"
+#include "draw.h"
 
 static void draw_marginy(t_pt *margin, t_data *res_data, t_data *f_data)
 {
@@ -97,16 +97,16 @@ static void init_window_image(t_mlx *mlx, t_img *img, t_map *map)
     mlx->mlx_ptr = mlx_init();
     mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, map->num_of_column * WPB, map->num_of_line * HPB, "so_long");
     (void)mlx->win_ptr;
-    img->f_img = mlx_xpm_file_to_image(mlx->mlx_ptr, "floor.xpm", &width, &height);
+    img->f_img = mlx_xpm_file_to_image(mlx->mlx_ptr, "src/xpm/floor.xpm", &width, &height);
     f_data.addr = (unsigned int *)mlx_get_data_addr(img->f_img, &f_data.bpp, &f_data.size_l, &f_data.endian);
-    img->w_img = make_image(mlx, &f_data, "w.xpm");
-    img->c_img = make_image(mlx, &f_data, "c.xpm");
-    img->p_img = make_image(mlx, &f_data, "p.xpm");
-    img->e_img = make_image(mlx, &f_data, "e.xpm");
+    img->w_img = make_image(mlx, &f_data, "./src/xpm/w.xpm");
+    img->c_img = make_image(mlx, &f_data, "./src/xpm/c.xpm");
+    img->p_img = make_image(mlx, &f_data, "./src/xpm/p.xpm");
+    img->e_img = make_image(mlx, &f_data, "./src/xpm/e.xpm");
     f_data.addr = (unsigned int *)mlx_get_data_addr(img->c_img, &f_data.bpp, &f_data.size_l, &f_data.endian);
-    img->p_on_c_img = make_image(mlx, &f_data, "p.xpm");
+    img->p_on_c_img = make_image(mlx, &f_data, "./src/xpm/p.xpm");
     f_data.addr = (unsigned int *)mlx_get_data_addr(img->e_img, &f_data.bpp, &f_data.size_l, &f_data.endian);
-    img->p_on_e_img = make_image(mlx, &f_data, "p.xpm");
+    img->p_on_e_img = make_image(mlx, &f_data, "src/xpm/p.xpm");
 }
 
 void draw_map(t_mlx *mlx, t_img *img, t_map *map)
