@@ -6,7 +6,7 @@
 #    By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/18 13:28:39 by yotsubo           #+#    #+#              #
-#    Updated: 2022/11/19 17:13:45 by yotsubo          ###   ########.fr        #
+#    Updated: 2022/11/19 17:52:30 by yotsubo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ GNL_PATH = ./gnl
 GNL = $(GNL_PATH)/gnl.a
 CC	= cc
 CFLAGS	= -Wall -Wextra -Werror
+INCLUDE = -I include
 
 all	: $(NAME)
 
@@ -38,12 +39,15 @@ $(GNL) :
 	make -C $(GNL_PATH)
 
 clean :
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 	make clean -C $(GNL_PATH)
 
 fclean : clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 	make fclean -C $(GNL_PATH)
+
+.c.o :
+	$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE)
 
 re : fclean all
 
