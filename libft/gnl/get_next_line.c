@@ -26,7 +26,8 @@ char	*next_store(char *store)
 	next_store = NULL;
 	head = gnl_strclen(store, '\n') + 1;
 	tail = gnl_strclen(store, '\0');
-	next_store = gnl_substr(store, head, tail - head);
+	if (head != 1)
+		next_store = gnl_substr(store, head, tail - head);
 	free(store);
 	return (next_store);
 }

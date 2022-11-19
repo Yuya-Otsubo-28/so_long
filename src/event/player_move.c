@@ -1,6 +1,28 @@
 #include "events.h"
 
-void adj_position(t_param *param, int y, int x)
+void destroy_image(t_mlx *mlx, t_img *img)
+{
+    mlx_destroy_image(mlx->mlx_ptr, img->c_img);
+    mlx_destroy_image(mlx->mlx_ptr, img->e_img);
+    mlx_destroy_image(mlx->mlx_ptr, img->f_img);
+    mlx_destroy_image(mlx->mlx_ptr, img->p_img);
+    mlx_destroy_image(mlx->mlx_ptr, img->p_on_c_img);
+    mlx_destroy_image(mlx->mlx_ptr, img->p_on_e_img);
+    mlx_destroy_image(mlx->mlx_ptr, img->w_img);
+}
+
+static void finish(t_param *param)
+{
+    destroy_image(param->mlx, param->img);
+    free_double_ptr(param->map->map_data, param->map->num_of_line);
+    mlx_destroy_window(param->mlx->mlx_ptr, param->mlx->win_ptr);
+    mlx_destroy_display(param->mlx->mlx_ptr);
+    free(param->mlx->mlx_ptr);
+    ft_printf("%d\n", param->res);
+    exit(0);
+}
+
+static void adj_position(t_param *param, int y, int x)
 {
     if (param->map->map_data[y][x] == 'C')
     {
@@ -40,7 +62,7 @@ void player_move(int move, t_param *param)
     if (param->map->map_data[p.y + dst.y][p.x + dst.x] == 'E')
     {
         if (param->count_c == param->num_c)
-            exit(0);
+            finish(param);
         param->map->map_data[p.y + dst.y][p.x + dst.x] = P_ON_E;
     }
     else

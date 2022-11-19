@@ -97,6 +97,11 @@ void get_map_data(int fd, t_map *map)
         error_handle(MALLOC_ERROR, NULL);
     while (tmp)
     {
+        if (tmp[0] == '\n')
+        {
+            free(tmp);
+            break ;
+        }
         tmp = ignore_space(tmp);
         if (!tmp)
             error_handle(MALLOC_ERROR, NULL);

@@ -5,7 +5,7 @@ LIBS = -Lmlx -lmlx_Linux -lXext -lX11
 INLCUDE = -I ./include
 SRCS = src/draw/draw.c src/error/error.c src/event/events_utils.c src/event/events.c src/event/player_move.c\
 		src/map/check_goal.c src/map/check_map_data.c src/map/get_map_data.c src/map/map_utils.c src/map/map.c\
-		src/main.c
+		src/main.c src/draw/init_window_image.c
 OBJS = $(SRCS:.c=.o)
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
