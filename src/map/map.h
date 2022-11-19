@@ -7,6 +7,7 @@
 #include "../../error/error.h"
 #include "../../draw/draw.h"
 #include "../struct.h"
+#include "../../draw/event/events.h"
 
 t_map map_init(char *filename);
 

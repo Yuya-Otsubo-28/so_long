@@ -6,7 +6,7 @@
 /*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 11:34:52 by yotsubo           #+#    #+#             */
-/*   Updated: 2022/11/16 13:35:17 by yotsubo          ###   ########.fr       */
+/*   Updated: 2022/11/19 00:39:46 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,4 +133,5 @@ int	ft_strcmp(const char *s1, const char *s2);
 
 char	*ft_strndup(const char *s, size_t n);
 
+int	ft_printf(const char *format, ...);
 #endif

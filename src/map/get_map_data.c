@@ -18,7 +18,7 @@ static char *check_n(char *str)
 
     if (ft_strchr(str, '\n'))
         return (str);
-    res = (char *)malloc(sizeof(char) * ft_strlen(str + 2));
+    res = (char *)malloc(sizeof(char) * ft_strlen(str) + 2);
     if (!res)
         return (NULL);
     i = 0;

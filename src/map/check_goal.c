@@ -90,21 +90,10 @@ void check_goal(t_map *map)
     map_copy = init_map_copy(map);
     search_start(map, &i, &j);
     search_path(map, map_copy, i, j);
-    i = 0;
-    while (i < map->num_of_line)
+    if (check_collect(map, map_copy) != 1)
     {
-        j = 0;
-        while (j < map->num_of_column)
-        {
-            printf("%d ", map_copy[i][j]);
-            j++;
-        }
-        puts("");
-        i++;
+        free_double_ptr_int(map_copy, map->num_of_line);
+        map_errors(map->map_data, map->num_of_line, INPUT_ERROR);
     }
-    if (check_collect(map, map_copy) == 1)
-        printf("yatta-\n");
-    else
-        printf("xxx\n");
     free_double_ptr_int(map_copy, map->num_of_line);
 }

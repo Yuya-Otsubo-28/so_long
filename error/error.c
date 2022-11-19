@@ -37,7 +37,7 @@ static void print_error(int error_num)
     if (error_num == FILENAME_ERROR)
         ft_putstr_fd("ERROR\n***filename***\n", STDERR_FILENO);
     if (error_num == INPUT_ERROR)
-        ft_putstr_fd("ERROR\nmap\n", STDERR_FILENO);
+        ft_putstr_fd("ERROR\n***map***\n", STDERR_FILENO);
     if (error_num == MALLOC_ERROR)
         ft_putstr_fd("ERROR\n***malloc***\n", STDERR_FILENO);
 }

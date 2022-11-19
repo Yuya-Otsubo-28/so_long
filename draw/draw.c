@@ -103,6 +103,10 @@ static void init_window_image(t_mlx *mlx, t_img *img, t_map *map)
     img->c_img = make_image(mlx, &f_data, "c.xpm");
     img->p_img = make_image(mlx, &f_data, "p.xpm");
     img->e_img = make_image(mlx, &f_data, "e.xpm");
+    f_data.addr = (unsigned int *)mlx_get_data_addr(img->c_img, &f_data.bpp, &f_data.size_l, &f_data.endian);
+    img->p_on_c_img = make_image(mlx, &f_data, "p.xpm");
+    f_data.addr = (unsigned int *)mlx_get_data_addr(img->e_img, &f_data.bpp, &f_data.size_l, &f_data.endian);
+    img->p_on_e_img = make_image(mlx, &f_data, "p.xpm");
 }
 
 void draw_map(t_mlx *mlx, t_img *img, t_map *map)
@@ -119,24 +123,25 @@ void draw_map(t_mlx *mlx, t_img *img, t_map *map)
             mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, img->f_img, j * WPB, i * HPB);
             if (map->map_data[i][j] == '1')
                 mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, img->w_img, j * WPB, i * HPB);
-            if (map->map_data[i][j] == 'C')
+            if (map->map_data[i][j] == 'C' || map->map_data[i][j] == OLD_C)
                 mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, img->c_img, j * WPB, i * HPB);
             if (map->map_data[i][j] == 'P')
                 mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, img->p_img, j * WPB, i * HPB);
             if (map->map_data[i][j] == 'E')
                 mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, img->e_img, j * WPB, i * HPB);
+            if (map->map_data[i][j] == P_ON_C)
+                mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, img->p_on_c_img, j * WPB, i * HPB);
+            if (map->map_data[i][j] == P_ON_E)
+                mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, img->p_on_e_img, j * WPB, i * HPB);
             j++;
         }
         i++;
     }
 }
 
-void draw(t_map *map)
+void draw(t_map *map, t_mlx *mlx, t_img *img)
 {
-    t_mlx mlx;
-    t_img img;
-
-    init_window_image(&mlx, &img, map);
-    draw_map(&mlx, &img, map);
-    mlx_loop(mlx.mlx_ptr);
+    if (!img->c_img)
+        init_window_image(mlx, img, map);
+    draw_map(mlx, img, map);
 }
