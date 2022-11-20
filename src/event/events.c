@@ -34,5 +34,6 @@ void events(t_mlx *mlx, t_img *img, t_map *map)
     mlx_hook(mlx->win_ptr, 9, 1L<<21, &expose_hook, &param);
     mlx_key_hook(mlx->win_ptr, &key_hook, &param);
     mlx_hook(mlx->win_ptr, 17, 1L<<17, &destroy_hook, &param);
+    mlx_hook(mlx->win_ptr, 25, 1L<<18, &expose_hook, &param);
     mlx_loop(mlx->mlx_ptr);
 }
