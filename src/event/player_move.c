@@ -11,15 +11,18 @@ void destroy_image(t_mlx *mlx, t_img *img)
     mlx_destroy_image(mlx->mlx_ptr, img->w_img);
 }
 
-static void finish(t_param *param)
+void finish(int key, t_param *param)
 {
     destroy_image(param->mlx, param->img);
     free_double_ptr(param->map->map_data, param->map->num_of_line);
     mlx_destroy_window(param->mlx->mlx_ptr, param->mlx->win_ptr);
     mlx_destroy_display(param->mlx->mlx_ptr);
     free(param->mlx->mlx_ptr);
-    param->res++;
-    ft_printf("%d\n", param->res);
+    if (key != ESC_KEY)
+    {
+        param->res++;
+        ft_printf("%d\n", param->res);
+    }
     exit(0);
 }
 
@@ -63,7 +66,7 @@ void player_move(int move, t_param *param)
     if (param->map->map_data[p.y + dst.y][p.x + dst.x] == 'E')
     {
         if (param->count_c == param->num_c)
-            finish(param);
+            finish(move, param);
         param->map->map_data[p.y + dst.y][p.x + dst.x] = P_ON_E;
     }
     else
@@ -71,4 +74,5 @@ void player_move(int move, t_param *param)
     adj_position(param, p.y, p.x);
     draw(param->map, param->mlx, param->img);
     param->res++;
+    ft_printf("%d\n", param->res);
 }

@@ -15,7 +15,7 @@ MINILIB = $(MINILIB_PATH)/libmlx_Linux.a
 
 ifeq ($(shell uname),Darwin)
 FRMEWORK = -framework OpenGL -framework Appkit
-LIBS = -Lmlx -lmlx_Darwin -L/usr/X11R6/lib -lXext -lX11 -lm
+LIBS = -Lmlx -lmlx_Darwin -L/usr/X11R6/lib -lXext -lX11
 endif
 
 all : $(NAME)

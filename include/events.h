@@ -7,7 +7,7 @@
 #define A_KEY 97
 #define S_KEY 115
 #define D_KEY 100
-#define ESC_KEY
+#define ESC_KEY 65307
 
 void events(t_mlx *mlx, t_img *img, t_map *map);
 
@@ -17,4 +17,5 @@ int get_c_num(t_map *map);
 
 void player_move(int move, t_param *param);
 
+void finish(int key, t_param *param);
 #endif
