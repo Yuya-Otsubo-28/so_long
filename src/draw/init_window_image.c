@@ -47,7 +47,6 @@ void init_window_image(t_mlx *mlx, t_img *img, t_map *map)
 
     mlx->mlx_ptr = mlx_init();
     mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, map->num_of_column * WPB, map->num_of_line * HPB, "so_long");
-    (void)mlx->win_ptr;
     img->f_img = mlx_xpm_file_to_image(mlx->mlx_ptr, "src/xpm/floor.xpm", &width, &height);
     f_data.addr = (unsigned int *)mlx_get_data_addr(img->f_img, &f_data.bpp, &f_data.size_l, &f_data.endian);
     img->w_img = make_image(mlx, &f_data, "./src/xpm/w.xpm");

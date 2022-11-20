@@ -23,10 +23,11 @@ LIBFT_SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c\
 		ft_ltoa.c ft_deci_to_hexa.c ft_putuchar_fd.c ft_utoa.c ft_putnstr_fd.c\
 		printf_putstr_fd.c printf_putuchar.c ft_atol.c ft_strcmp.c ft_strndup.c\
 		ft_printf.c print_args_utils.c
-GNL_PATH = ./gnl
+GNL_PATH = gnl
 GNL_SRCS = $(GNL_PATH)/get_next_line_utils.c $(GNL_PATH)/get_next_line.c
 SRCS = $(LIBFT_SRCS) $(GNL_SRCS)
-OBJS	= $(SRCS:.c=.o)
+OBJSDIR = ./obj
+OBJS	= $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
 CC	= cc
 CFLAGS	= -Wall -Wextra -Werror
 INCLUDE = -I include
@@ -42,7 +43,7 @@ clean :
 fclean : clean
 	@rm -f $(NAME)
 
-.c.o :
+$(OBJSDIR)/%.o: %.c
 	$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE)
 
 re : fclean all

@@ -18,6 +18,7 @@ static void finish(t_param *param)
     mlx_destroy_window(param->mlx->mlx_ptr, param->mlx->win_ptr);
     mlx_destroy_display(param->mlx->mlx_ptr);
     free(param->mlx->mlx_ptr);
+    param->res++;
     ft_printf("%d\n", param->res);
     exit(0);
 }
