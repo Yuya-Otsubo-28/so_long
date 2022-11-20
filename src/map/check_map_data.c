@@ -33,12 +33,12 @@ static void check_map_char(t_map *map)
 {
     size_t i;
     size_t j;
-    size_t p_count;
-    size_t e_count;
+    t_count count;
 
     i = 0;
-    p_count = 0;
-    e_count = 0;
+    count.c_count = 0;
+    count.e_count = 0;
+    count.p_count = 0;
     while (map->map_data[i])
     {
         j = 0;
@@ -47,15 +47,17 @@ static void check_map_char(t_map *map)
             if (!(map->map_data[i][j] == '0' || map->map_data[i][j] == '1' || map->map_data[i][j] == 'C' || map->map_data[i][j] == 'E' || map->map_data[i][j] == 'P'))
                 map_errors(map->map_data, map->num_of_line, INPUT_ERROR);
             if (map->map_data[i][j] == 'P')
-                p_count++;
+                count.p_count++;
             if(map->map_data[i][j] == 'E')
-                e_count++;
+                count.e_count++;
+            if (map->map_data[i][j] == 'C')
+                count.c_count++;
             j++;
         }
         i++;
     }
-    if (!(p_count == 1 && e_count == 1))
-        map_errors(map->map_data, map->num_of_line, INPUT_ERROR);
+    if (count.c_count < 1 || count.e_count != 1 || count.p_count != 1)
+       map_errors(map->map_data, map->num_of_line, INPUT_ERROR);
 }
 
 void check_map_data(t_map *map)

@@ -94,7 +94,7 @@ void get_map_data(int fd, t_map *map)
 
     tmp = get_next_line(fd);
     if (!tmp)
-        error_handle(MALLOC_ERROR, NULL);
+        error_handle(INPUT_ERROR, NULL);
     while (tmp)
     {
         if (tmp[0] == '\n')

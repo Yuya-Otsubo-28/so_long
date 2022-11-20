@@ -51,5 +51,11 @@ typedef struct s_param
     int count_c;
 } t_param;
 
+typedef struct s_count
+{
+    size_t p_count;
+    size_t c_count;
+    size_t e_count;
+} t_count;
 
 #endif
