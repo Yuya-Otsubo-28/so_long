@@ -1,6 +1,8 @@
 #ifndef STRUCT_H
 #define STRUCT_H
 
+#include "stdio.h"
+
 typedef struct s_pt
 {
     int x;

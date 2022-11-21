@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yotsubo </var/mail/yotsubo>                +#+  +:+       +#+        */
+/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 08:45:42 by yotsubo           #+#    #+#             */
-/*   Updated: 2022/11/21 08:50:34 by yotsubo          ###   ########.fr       */
+/*   Updated: 2022/11/21 10:14:06 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static void	print_error(int error_num)
 		ft_putstr_fd("ERROR\n***map***\n", STDERR_FILENO);
 	if (error_num == MALLOC_ERROR)
 		ft_putstr_fd("ERROR\n***malloc***\n", STDERR_FILENO);
+	if (error_num == MLX_ERROR)
+		ft_putstr_fd("ERROR\n***mlx***\n", STDERR_FILENO);
 }
 
 void	error_handle(int error_num, ...)

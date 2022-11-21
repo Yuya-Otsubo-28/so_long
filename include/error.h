@@ -6,15 +6,21 @@
 #include "struct.h"
 #include <stdarg.h>
 
+#define ARGS_ERROR 0
+#define FILENAME_ERROR 1
+#define INPUT_ERROR 2
+#define MALLOC_ERROR 3
+#define MLX_ERROR 4
+
 void free_double_ptr(char **ptr, size_t count);
 
 void free_double_ptr_int(int **ptr, size_t i);
 
 void error_handle(int error_num, ...);
 
-#define ARGS_ERROR 0
-#define FILENAME_ERROR 1
-#define INPUT_ERROR 2
-#define MALLOC_ERROR 3
+void error_mlx_init(t_map *map);
 
+void error_win_init(t_mlx *mlx, t_map *map);
+
+void error_init_floor(t_mlx *mlx, t_map *map);
 #endif

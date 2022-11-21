@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yotsubo </var/mail/yotsubo>                +#+  +:+       +#+        */
+/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 08:56:42 by yotsubo           #+#    #+#             */
-/*   Updated: 2022/11/21 10:00:05 by yotsubo          ###   ########.fr       */
+/*   Updated: 2022/11/21 10:13:11 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	finish(int key, t_param *param)
 		param->res++;
 		ft_printf("%d\n", param->res);
 	}
+	if (key == MLX_ERROR)
+		error_handle(MLX_ERROR, NULL);
 	exit(0);
 }
 

@@ -5,7 +5,7 @@ LIBS = -Lmlx -lmlx_Linux -L/usr/X11R6/lib -lXext -lX11 -lm
 INLCUDE = -I ./include -I /usr/X11R6/inxlude
 SRCS = src/draw/draw.c src/error/error.c src/event/events_utils.c src/event/events.c src/event/player_move.c\
 		src/map/check_goal.c src/map/check_map_data.c src/map/get_map_data.c src/map/map_utils.c src/map/map.c\
-		src/main.c src/draw/init_window_image.c
+		src/main.c src/draw/init_window_image.c src/error/init_error.c
 OBJDIR = ./obj
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 LIBFT_PATH = ./libft
