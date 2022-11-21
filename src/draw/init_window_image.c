@@ -6,7 +6,7 @@
 /*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:10:27 by yotsubo           #+#    #+#             */
-/*   Updated: 2022/11/21 17:32:25 by yotsubo          ###   ########.fr       */
+/*   Updated: 2022/11/21 17:41:25 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	image_check(t_mlx *mlx, t_img *img, t_map *map)
 
 static void	init_image(t_mlx *mlx, t_img *img)
 {
-	t_data f_data;
+	t_data	f_data;
 
 	f_data.addr = (unsigned int *)mlx_get_data_addr(img->f_img, &f_data.bpp,
 			&f_data.size_l, &f_data.endian);
