@@ -3,58 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_window_image.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yotsubo </var/mail/yotsubo>                +#+  +:+       +#+        */
+/*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:10:27 by yotsubo           #+#    #+#             */
-/*   Updated: 2022/11/21 17:23:24 by yotsubo          ###   ########.fr       */
+/*   Updated: 2022/11/21 17:32:25 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
-
-void	*insert(t_data *tmp_data, t_data *f_data, t_pt *tmp_size, t_mlx *mlx)
-{
-	t_pt	pt;
-	void	*res;
-	t_data	res_data;
-
-	res = mlx_new_image(mlx->mlx_ptr, WPB, HPB);
-	res_data.addr = (unsigned int *)mlx_get_data_addr(res, &res_data.bpp,
-			&res_data.size_l, &res_data.endian);
-	pt.y = 0;
-	while (pt.y < tmp_size->y)
-	{
-		pt.x = 0;
-		while (pt.x < tmp_size->x)
-		{
-			if (tmp_data->addr[pt.y * tmp_size->x + pt.x] == 0xFF000000)
-				res_data.addr[pt.y * tmp_size->x + pt.x]
-					= f_data->addr[pt.y * tmp_size->x + pt.x];
-			else
-				res_data.addr[pt.y * tmp_size->x + pt.x]
-					= tmp_data->addr[pt.y * tmp_size->x + pt.x];
-			pt.x++;
-		}
-		pt.y++;
-	}
-	return (res);
-}
-
-static void	*make_image(t_mlx *mlx, t_data *f_data, char *filename)
-{
-	void	*tmp;
-	void	*res;
-	t_pt	tmp_size;
-	t_data	tmp_data;
-
-	tmp = mlx_xpm_file_to_image(mlx->mlx_ptr, filename,
-			&tmp_size.x, &tmp_size.y);
-	tmp_data.addr = (unsigned int *)mlx_get_data_addr(tmp, &tmp_data.bpp,
-			&tmp_data.size_l, &tmp_data.endian);
-	res = insert(&tmp_data, f_data, &tmp_size, mlx);
-	mlx_destroy_image(mlx->mlx_ptr, tmp);
-	return (res);
-}
 
 static int	key_make(t_img *img)
 {
@@ -106,23 +62,10 @@ static void	image_check(t_mlx *mlx, t_img *img, t_map *map)
 	}
 }
 
-void	init_window_image(t_mlx *mlx, t_img *img, t_map *map)
+static void	init_image(t_mlx *mlx, t_img *img)
 {
-	int		width;
-	int		height;
-	t_data	f_data;
+	t_data f_data;
 
-	mlx->mlx_ptr = mlx_init();
-	if (!mlx->mlx_ptr)
-		error_mlx_init(map);
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, map->num_of_column * WPB,
-			map->num_of_line * HPB, "so_long");
-	if (!mlx->win_ptr)
-		error_win_init(mlx, map);
-	img->f_img = mlx_xpm_file_to_image(mlx->mlx_ptr, "src/xpm/floor.xpm",
-			&width, &height);
-	if (!img->f_img)
-		error_init_floor(mlx, map);
 	f_data.addr = (unsigned int *)mlx_get_data_addr(img->f_img, &f_data.bpp,
 			&f_data.size_l, &f_data.endian);
 	img->w_img = make_image(mlx, &f_data, "./src/xpm/w.xpm");
@@ -135,5 +78,24 @@ void	init_window_image(t_mlx *mlx, t_img *img, t_map *map)
 	f_data.addr = (unsigned int *)mlx_get_data_addr(img->e_img, &f_data.bpp,
 			&f_data.size_l, &f_data.endian);
 	img->p_on_e_img = make_image(mlx, &f_data, "src/xpm/p.xpm");
+}
+
+void	init_window_image(t_mlx *mlx, t_img *img, t_map *map)
+{
+	int		width;
+	int		height;
+
+	mlx->mlx_ptr = mlx_init();
+	if (!mlx->mlx_ptr)
+		error_mlx_init(map);
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, map->num_of_column * WPB,
+			map->num_of_line * HPB, "so_long");
+	if (!mlx->win_ptr)
+		error_win_init(mlx, map);
+	img->f_img = mlx_xpm_file_to_image(mlx->mlx_ptr, "src/xpm/floor.xpm",
+			&width, &height);
+	if (!img->f_img)
+		error_init_floor(mlx, map);
+	init_image(mlx, img);
 	image_check(mlx, img, map);
 }
