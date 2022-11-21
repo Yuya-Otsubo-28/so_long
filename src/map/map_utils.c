@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yotsubo </var/mail/yotsubo>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/21 09:49:37 by yotsubo           #+#    #+#             */
+/*   Updated: 2022/11/21 09:51:53 by yotsubo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "map.h"
 
-void map_errors(char **ptr, size_t ptr_size, int error_num)
+void	map_errors(char **ptr, size_t ptr_size, int error_num)
 {
 	free_double_ptr(ptr, ptr_size);
 	error_handle(error_num, NULL);
@@ -18,10 +29,8 @@ char	*sl_strtrim(char const *s1, char const *set)
 		return (NULL);
 	i = 0;
 	j = ft_strlen(s1) - 1;
-    if (s1[j] == '\n')
-	{
-        j--;
-	}
+	if (s1[j] == '\n')
+		j--;
 	while (ft_strchr(set, s1[i]) && i < j)
 		i++;
 	while (ft_strchr(set, s1[j]) && j >= i)

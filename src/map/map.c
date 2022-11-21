@@ -1,41 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yotsubo </var/mail/yotsubo>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/21 09:28:01 by yotsubo           #+#    #+#             */
+/*   Updated: 2022/11/21 09:49:26 by yotsubo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "map.h"
 
-static int strcmp_from_last(char *str1, char *str2)
+static int	strcmp_from_last(char *str1, char *str2)
 {
-    size_t i;
+	size_t	i;
 
-    while (*str1)
-    {
-        i = 0;
-        while (str1[i] && str2[i] && str1[i] == str2[i])
-            i++;
-        if (!str1[i] && !str2[i])
-            return (1);
-        str1++;
-    }
-    return (0);
+	while (*str1)
+	{
+		i = 0;
+		while (str1[i] && str2[i] && str1[i] == str2[i])
+			i++;
+		if (!str1[i] && !str2[i])
+			return (1);
+		str1++;
+	}
+	return (0);
 }
 
-static int filename_check(char *filename)
+static int	filename_check(char *filename)
 {
-    int fd;
+	int	fd;
 
-    if (!strcmp_from_last(filename, ".ber"))
-        error_handle(ARGS_ERROR, NULL);
-    fd = open(filename, O_RDONLY);
-    if (fd == -1)
-        error_handle(ARGS_ERROR, NULL);
-    return (fd);
+	if (!strcmp_from_last(filename, ".ber"))
+		error_handle(ARGS_ERROR, NULL);
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		error_handle(ARGS_ERROR, NULL);
+	return (fd);
 }
 
-t_map map_init(char *filename)
+t_map	map_init(char *filename)
 {
-    int fd;
-    t_map map;
+	int		fd;
+	t_map	map;
 
-    map.map_data = NULL;
-    fd = filename_check(filename);
-    get_map_data(fd, &map);
-    check_map_data(&map);
-    return (map);
+	map.map_data = NULL;
+	fd = filename_check(filename);
+	get_map_data(fd, &map);
+	check_map_data(&map);
+	return (map);
 }
