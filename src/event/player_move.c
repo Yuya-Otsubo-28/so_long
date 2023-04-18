@@ -6,7 +6,7 @@
 /*   By: yotsubo <y.otsubo.886@ms.saitama-u.ac.j    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 08:56:42 by yotsubo           #+#    #+#             */
-/*   Updated: 2022/11/21 10:13:11 by yotsubo          ###   ########.fr       */
+/*   Updated: 2023/04/18 16:53:13 by yotsubo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	adj_position(t_param *param, int y, int x)
 	else if (param->map->map_data[y][x] == 'P')
 		param->map->map_data[y][x] = '0';
 	else if (param->map->map_data[y][x] == P_ON_C)
-		param->map->map_data[y][x] = OLD_C;
+		param->map->map_data[y][x] = '0';
 	else if (param->map->map_data[y][x] == P_ON_E)
 		param->map->map_data[y][x] = 'E';
 }
